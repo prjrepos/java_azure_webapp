@@ -8,7 +8,7 @@ public class AppSvcController {
 
 	@GetMapping("/health-check")
 	public String heath_check() {
-		return "I am healthy and running as azure webapp!!";
+		return "I am healthy and running fine as azure webapp!!";
 	}
 
 	@GetMapping("/hello-world")
