@@ -28,7 +28,14 @@
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-actuator</artifactId> 
     </dependency>  
-    <!-- end::actuator[] -->  
+    <!-- end::actuator[] -->
+     <!--dependency added for Cosmos -->
+     <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-cosmos</artifactId>
+      <version>4.11.0</version>
+  </dependency>
+  <!-- end::Cosmos[] -->
     <!-- tag::tests[] -->  
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
