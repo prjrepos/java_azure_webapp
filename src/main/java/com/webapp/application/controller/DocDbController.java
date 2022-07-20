@@ -1,4 +1,4 @@
-package com.example.application.controller;
+package com.webapp.application.controller;
 
 import java.util.UUID;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dao.CustomerDaoFactory;
-import com.example.model.Customer;
-import com.example.model.ICustomer;
+import com.webapp.dao.CustomerDaoFactory;
+import com.webapp.model.Customer;
+import com.webapp.model.ICustomer;
 
 import lombok.NonNull;
 
@@ -26,8 +26,8 @@ public class DocDbController {
         super();
 		this.customer = customer;
     }
-
-	@Autowired
+	
+    @Autowired
     public static DocDbController getInstance() {
         if (docDbController == null) {
             docDbController = new DocDbController(CustomerDaoFactory.getDao());
@@ -46,7 +46,7 @@ public class DocDbController {
 
         cust.setName(name);
         cust.setIsValid(isValid);
-        cust.setId(UUID.randomUUID().toString());
+        cust.setId(UUID.randomUUID().toString());        
         return customer.createCustomer(cust);
     }
 

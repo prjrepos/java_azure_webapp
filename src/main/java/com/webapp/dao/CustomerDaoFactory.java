@@ -1,8 +1,8 @@
-package com.example.dao;
+package com.webapp.dao;
 
 import org.springframework.stereotype.Component;
 
-import com.example.model.ICustomer;
+import com.webapp.model.ICustomer;
 
 @Component
 public class CustomerDaoFactory {

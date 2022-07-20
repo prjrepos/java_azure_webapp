@@ -1,9 +1,8 @@
-com\example\application\Application.class
-com\example\application\controller\AppSvcController.class
-com\example\model\ICustomer.class
-com\example\application\controller\DocDbController.class
-com\example\model\Customer.class
-com\example\dao\CustomerServices.class
-com\example\dao\DocDbCustomerService.class
-com\example\dao\CosmosClientFactory.class
-com\example\dao\CustomerDaoFactory.class
+com\webapp\application\Application.class
+com\webapp\model\Customer.class
+com\webapp\dao\DocDbCustomerService.class
+com\webapp\application\controller\DocDbController.class
+com\webapp\model\ICustomer.class
+com\webapp\application\controller\AppSvcController.class
+com\webapp\dao\CosmosClientFactory.class
+com\webapp\dao\CustomerDaoFactory.class

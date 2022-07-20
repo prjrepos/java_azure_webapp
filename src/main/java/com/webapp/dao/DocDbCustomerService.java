@@ -1,4 +1,4 @@
-package com.example.dao;
+package com.webapp.dao;
 
 import com.azure.cosmos.CosmosClient;
 import com.azure.cosmos.CosmosContainer;
@@ -17,14 +17,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
-import com.example.model.Customer;
-import com.example.model.ICustomer;
+import com.webapp.model.Customer;
+import com.webapp.model.ICustomer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class DocDbCustomerService implements ICustomer  {
     // The name of our database.
     private static final String DATABASE_ID = "trainingdb";
@@ -49,8 +51,7 @@ public class DocDbCustomerService implements ICustomer  {
 
     @Override
     public Customer createCustomer(Customer customer) {
-        // Serialize the Customer as a JSON Document.
-
+        // Serialize the Customer as a JSON Document.        
         JsonNode customerJson = OBJECT_MAPPER.valueToTree(customer);
 
         ((ObjectNode) customerJson).put("entityType", "customer");
@@ -60,19 +61,19 @@ public class DocDbCustomerService implements ICustomer  {
             customerJson =
                 getContainerCreateResourcesIfNotExist()
                     .createItem(customerJson)
-                    .getItem();
+                    .getItem();            
         } catch (CosmosException e) {
             System.out.println("Error creating Customer item.\n");
             e.printStackTrace();
             return null;
         }
         try {
+            System.out.println("Successfully Created a New Record \n");
             return OBJECT_MAPPER.treeToValue(customerJson, Customer.class);
             //return todoItem;
         } catch (Exception e) {
-            System.out.println("Error deserializing created TODO item.\n");
+            System.out.println("Error deserializing created Customer item.\n");
             e.printStackTrace();
-
             return null;
         }
 

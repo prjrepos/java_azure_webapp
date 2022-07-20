@@ -1,4 +1,4 @@
-package com.example.dao;
+package com.webapp.dao;
 
 import com.azure.cosmos.ConsistencyLevel;
 import com.azure.cosmos.CosmosClient;

@@ -1,4 +1,4 @@
-package com.example.application;
+package com.webapp.application;
 
 import java.util.Arrays;
 
@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 
-@SpringBootApplication(scanBasePackages = { "com.example.*" })
+@SpringBootApplication(scanBasePackages = { "com.webapp.*" })
 public class Application {
 
 	public static void main(String[] args) {
