@@ -23,9 +23,11 @@ import com.example.model.ICustomer;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class DocDbCustomerService implements ICustomer  {
     // The name of our database.
-    private static final String DATABASE_ID = "training";
+    private static final String DATABASE_ID = "trainingdb";
 
     // The name of our collection.
     private static final String CONTAINER_ID = "customer";
@@ -34,8 +36,7 @@ public class DocDbCustomerService implements ICustomer  {
     private static Gson gson = new Gson();
 
     // The Cosmos DB Client
-    private static CosmosClient cosmosClient = CosmosClientFactory
-        .getCosmosClient();
+    private static CosmosClient cosmosClient = CosmosClientFactory.getCosmosClient();
 
     // The Cosmos DB database
     private static CosmosDatabase cosmosDatabase = null;
@@ -47,29 +48,26 @@ public class DocDbCustomerService implements ICustomer  {
     private static final ObjectMapper OBJECT_MAPPER = Utils.getSimpleObjectMapper();
 
     @Override
-    public TodoItem createTodoItem(TodoItem todoItem) {
-        // Serialize the TodoItem as a JSON Document.
+    public Customer createCustomer(Customer customer) {
+        // Serialize the Customer as a JSON Document.
 
-        JsonNode todoItemJson = OBJECT_MAPPER.valueToTree(todoItem);
+        JsonNode customerJson = OBJECT_MAPPER.valueToTree(customer);
 
-        ((ObjectNode) todoItemJson).put("entityType", "todoItem");
+        ((ObjectNode) customerJson).put("entityType", "customer");
 
         try {
             // Persist the document using the DocumentClient.
-            todoItemJson =
+            customerJson =
                 getContainerCreateResourcesIfNotExist()
-                    .createItem(todoItemJson)
+                    .createItem(customerJson)
                     .getItem();
         } catch (CosmosException e) {
-            System.out.println("Error creating TODO item.\n");
+            System.out.println("Error creating Customer item.\n");
             e.printStackTrace();
             return null;
         }
-
-
         try {
-
-            return OBJECT_MAPPER.treeToValue(todoItemJson, TodoItem.class);
+            return OBJECT_MAPPER.treeToValue(customerJson, Customer.class);
             //return todoItem;
         } catch (Exception e) {
             System.out.println("Error deserializing created TODO item.\n");
@@ -81,18 +79,17 @@ public class DocDbCustomerService implements ICustomer  {
     }
 
     @Override
-    public TodoItem readTodoItem(String id) {
+    public Customer readCustomer(String id) {
         // Retrieve the document by id using our helper method.
-        JsonNode todoItemJson = getDocumentById(id);
+        JsonNode customerJson = getDocumentById(id);
 
-        if (todoItemJson != null) {
+        if (customerJson != null) {
             // De-serialize the document in to a TodoItem.
             try {
-                return OBJECT_MAPPER.treeToValue(todoItemJson, TodoItem.class);
+                return OBJECT_MAPPER.treeToValue(customerJson, Customer.class);
             } catch (JsonProcessingException e) {
-                System.out.println("Error deserializing read TODO item.\n");
+                System.out.println("Error deserializing read Customer item.\n");
                 e.printStackTrace();
-
                 return null;
             }
         } else {
@@ -101,11 +98,11 @@ public class DocDbCustomerService implements ICustomer  {
     }
 
     @Override
-    public List<TodoItem> readTodoItems() {
+    public List<Customer> readCustomers() {
 
-        List<TodoItem> todoItems = new ArrayList<TodoItem>();
+        List<Customer> customers = new ArrayList<Customer>();
 
-        String sql = "SELECT * FROM root r WHERE r.entityType = 'todoItem'";
+        String sql = "SELECT * FROM root r WHERE r.entityType = 'customer'";
         int maxItemCount = 1000;
         int maxDegreeOfParallelism = 1000;
         int maxBufferedItemCount = 100;
@@ -131,14 +128,14 @@ public class DocDbCustomerService implements ICustomer  {
                 for (JsonNode item : pageResponse.getElements()) {
 
                     try {
-                        todoItems.add(OBJECT_MAPPER.treeToValue(item, TodoItem.class));
+                        customers.add(OBJECT_MAPPER.treeToValue(item, Customer.class));
                     } catch (JsonProcessingException e) {
                         if (error_count < error_limit) {
                             error_count++;
                             if (error_count >= error_limit) {
                                 System.out.println("\n...reached max error count.\n");
                             } else {
-                                System.out.println("Error deserializing TODO item JsonNode. " +
+                                System.out.println("Error deserializing Customer item JsonNode. " +
                                     "This item will not be returned.");
                                 e.printStackTrace();
                             }
@@ -150,60 +147,58 @@ public class DocDbCustomerService implements ICustomer  {
 
         } while (continuationToken != null);
 
-        return todoItems;
+        return customers;
     }
 
     @Override
-    public TodoItem updateTodoItem(String id, boolean isComplete) {
+    public Customer updateCustomer(String id, boolean isValid) {
         // Retrieve the document from the database
-        JsonNode todoItemJson = getDocumentById(id);
+        JsonNode customerJson = getDocumentById(id);
 
         // You can update the document as a JSON document directly.
         // For more complex operations - you could de-serialize the document in
         // to a POJO, update the POJO, and then re-serialize the POJO back in to
         // a document.
-        ((ObjectNode) todoItemJson).put("complete", isComplete);
+        ((ObjectNode) customerJson).put("isValid", isValid);
 
         try {
             // Persist/replace the updated document.
-            todoItemJson =
+            customerJson =
                 getContainerCreateResourcesIfNotExist()
-                    .replaceItem(todoItemJson, id, new PartitionKey(id), new CosmosItemRequestOptions())
+                    .replaceItem(customerJson, id, new PartitionKey(id), new CosmosItemRequestOptions())
                     .getItem();
         } catch (CosmosException e) {
-            System.out.println("Error updating TODO item.\n");
+            System.out.println("Error updating Customer item.\n");
             e.printStackTrace();
             return null;
         }
 
         // De-serialize the document in to a TodoItem.
         try {
-            return OBJECT_MAPPER.treeToValue(todoItemJson, TodoItem.class);
+            return OBJECT_MAPPER.treeToValue(customerJson, Customer.class);
         } catch (JsonProcessingException e) {
             System.out.println("Error deserializing updated item.\n");
             e.printStackTrace();
-
             return null;
         }
     }
 
     @Override
-    public boolean deleteTodoItem(String id) {
+    public boolean deleteCustomer(String id) {
         // CosmosDB refers to documents by self link rather than id.
 
         // Query for the document to retrieve the self link.
-        JsonNode todoItemJson = getDocumentById(id);
+        JsonNode customerJson = getDocumentById(id);
 
         try {
             // Delete the document by self link.
             getContainerCreateResourcesIfNotExist()
                 .deleteItem(id, new PartitionKey(id), new CosmosItemRequestOptions());
         } catch (CosmosException e) {
-            System.out.println("Error deleting TODO item.\n");
+            System.out.println("Error deleting Customer item.\n");
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
 

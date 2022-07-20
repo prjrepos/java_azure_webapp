@@ -2,8 +2,12 @@ package com.example.model;
 
 
 import java.util.List;
-import com.example.model.Customer;
 
+
+import org.springframework.stereotype.Service;
+
+
+@Service
 public interface ICustomer {
     /**
      * @return A list of Customer

@@ -1,2 +1,9 @@
-com\example\springboot\Application.class
-com\example\springboot\AppSvcController.class
+com\example\application\Application.class
+com\example\application\controller\AppSvcController.class
+com\example\model\ICustomer.class
+com\example\application\controller\DocDbController.class
+com\example\model\Customer.class
+com\example\dao\CustomerServices.class
+com\example\dao\DocDbCustomerService.class
+com\example\dao\CosmosClientFactory.class
+com\example\dao\CustomerDaoFactory.class

@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
 import lombok.NonNull;
 
 import com.example.model.Customer;
 import com.example.model.ICustomer;
 
+@Service
 public class CustomerServices implements ICustomer {
     private final Map<String, Customer> customerMap;
 
