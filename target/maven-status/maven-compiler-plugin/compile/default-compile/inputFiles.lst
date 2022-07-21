@@ -1,8 +1,8 @@
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\application\controller\DocDbController.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\dao\DocDbCustomerService.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\model\Customer.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\application\controller\AppSvcController.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\model\ICustomer.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\application\Application.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\dao\CosmosClientFactory.java
-c:\vscodeworkspaces\java_azure_webapp\src\main\java\com\webapp\dao\CustomerDaoFactory.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\dao\CustomerDaoFactory.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\model\ICustomer.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\dao\DocDbCustomerService.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\application\Application.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\application\controller\AppSvcController.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\dao\CosmosClientFactory.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\model\Customer.java
+C:\workspaces_CEP\repo-azure-poc\java_azure_webapp\src\main\java\com\webapp\application\controller\DocDbController.java

@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "51bd7b38-65e1-43ef-8133-ee3dd63815be",
+		"name": "azure-webapp-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cosmos-db-poc",
+			"item": [
+				{
+					"name": "customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/1.0/docdb/customer?name=Dipika Ghosh&isValid=true",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"1.0",
+								"docdb",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Dipika Ghosh"
+								},
+								{
+									"key": "isValid",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{training-webapp}}/api/1.0/docdb/customers",
+							"host": [
+								"{{training-webapp}}"
+							],
+							"path": [
+								"api",
+								"1.0",
+								"docdb",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/1.0/docdb/customer?id=f12c8d1c-f749-40bc-9b78-7ca143b7b77a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"1.0",
+								"docdb",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "f12c8d1c-f749-40bc-9b78-7ca143b7b77a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/1.0/docdb/customer?id=3c03bd3d-a339-41ec-a200-a0252d156a1b&isValid=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"1.0",
+								"docdb",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3c03bd3d-a339-41ec-a200-a0252d156a1b"
+								},
+								{
+									"key": "isValid",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "health-check",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{training-webapp}}/api/1.0/health-check",
+							"host": [
+								"{{training-webapp}}"
+							],
+							"path": [
+								"api",
+								"1.0",
+								"health-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/1.0/docdb/customer?id=78c97919-e718-488c-93c2-e5d2a3a44117",
+							"path": [
+								"api",
+								"1.0",
+								"docdb",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "78c97919-e718-488c-93c2-e5d2a3a44117"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health-check",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{training-webapp}}/api/1.0/docdb/health-check",
+					"host": [
+						"{{training-webapp}}"
+					],
+					"path": [
+						"api",
+						"1.0",
+						"docdb",
+						"health-check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

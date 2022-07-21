@@ -1,10 +1,13 @@
 package com.webapp.application.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +24,6 @@ public class DocDbController {
 	private static DocDbController docDbController;
     private ICustomer customer; 
 
-	@Autowired
 	public DocDbController(ICustomer customer) {
         super();
 		this.customer = customer;
@@ -48,6 +50,26 @@ public class DocDbController {
         cust.setIsValid(isValid);
         cust.setId(UUID.randomUUID().toString());        
         return customer.createCustomer(cust);
+    }
+
+    @DeleteMapping("/customer")
+    public boolean deleteCustomer(@NonNull String id) {
+        return customer.deleteCustomer(id);
+    }
+
+    @GetMapping("/customer")
+    public Customer getCustomer(@NonNull String id) {
+        return customer.readCustomer(id);
+    }
+
+    @GetMapping("/customers")
+    public List<Customer> getCustomers() {
+        return customer.readCustomers();
+    }
+
+    @PutMapping("/customer")
+    public Customer updateCustomer(@NonNull String id, boolean isValid) {
+        return customer.updateCustomer(id, isValid);
     }
 
 }
